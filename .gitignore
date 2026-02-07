@@ -1,3 +1,10 @@
 .venv/
 *.csv
 *.xlsx
+# Environment variables - never commit passwords!
+.env
+.env.local
+
+# Python environment
+__pycache__/
+*.pyc

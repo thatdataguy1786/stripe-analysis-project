@@ -1,6 +1,12 @@
 import pandas as pd
 import psycopg2
 from psycopg2 import sql
+import os
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
+
 
 # Load cleaned data
 df = pd.read_csv('dstakehome_merchants_clean.csv')
@@ -10,11 +16,12 @@ print("Loaded cleaned data:", len(df), "rows")
 df['first_charge_date'] = pd.to_datetime(df['first_charge_date']).dt.date
 
 # Connect to PostgreSQL
+print("\nConnecting to PostgreSQL...")
 conn = psycopg2.connect(
     host="localhost",
     database="stripe_db",
     user="postgres",
-    password="Postgres17!"
+    password=os.getenv('DB_PASSWORD')  # ✅ Use environment variable
 )
 cur = conn.cursor()
 

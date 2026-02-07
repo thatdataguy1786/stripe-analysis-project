@@ -26,7 +26,7 @@ conn = psycopg2.connect(
     host="localhost",
     database="stripe_db",
     user="postgres",
-    password="Postgres17!"
+    password="Postgres17!" 
 )
 cur = conn.cursor()
 
