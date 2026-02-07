@@ -1,6 +1,11 @@
 import pandas as pd
 import psycopg2
 from psycopg2.extras import execute_batch
+import os
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 
 # Load cleaned data
 print("Loading cleaned payments data...")
@@ -26,7 +31,7 @@ conn = psycopg2.connect(
     host="localhost",
     database="stripe_db",
     user="postgres",
-    password="Postgres17!" 
+    password=os.getenv('DB_PASSWORD')  # ✅ Use environment variable
 )
 cur = conn.cursor()
 
